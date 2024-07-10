@@ -14,6 +14,7 @@
 		A207C2402C3E859B00F0B9A1 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C23F2C3E859B00F0B9A1 /* WeatherAppTests.swift */; };
 		A207C24A2C3E859B00F0B9A1 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C2492C3E859B00F0B9A1 /* WeatherAppUITests.swift */; };
 		A207C24C2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C24B2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift */; };
+		A207C25C2C3E860C00F0B9A1 /* WeatherKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		A207C2452C3E859B00F0B9A1 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A207C2492C3E859B00F0B9A1 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		A207C24B2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A207C2582C3E85D700F0B9A1 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
+		A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +97,10 @@
 		A207C22D2C3E859900F0B9A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A207C25A2C3E85FD00F0B9A1 /* Models */,
+				A207C2592C3E85F400F0B9A1 /* Views */,
+				A207C2582C3E85D700F0B9A1 /* WeatherApp.entitlements */,
 				A207C22E2C3E859900F0B9A1 /* WeatherAppApp.swift */,
-				A207C2302C3E859900F0B9A1 /* ContentView.swift */,
 				A207C2322C3E859B00F0B9A1 /* Assets.xcassets */,
 				A207C2342C3E859B00F0B9A1 /* Preview Content */,
 			);
@@ -125,6 +130,22 @@
 				A207C24B2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		A207C2592C3E85F400F0B9A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A207C2302C3E859900F0B9A1 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A207C25A2C3E85FD00F0B9A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +280,7 @@
 			files = (
 				A207C2312C3E859900F0B9A1 /* ContentView.swift in Sources */,
 				A207C22F2C3E859900F0B9A1 /* WeatherAppApp.swift in Sources */,
+				A207C25C2C3E860C00F0B9A1 /* WeatherKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +441,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WeatherApp/WeatherApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
@@ -437,6 +461,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anthony-gufron.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,6 +473,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WeatherApp/WeatherApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
@@ -466,6 +493,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anthony-gufron.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
