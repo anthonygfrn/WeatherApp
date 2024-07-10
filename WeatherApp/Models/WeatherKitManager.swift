@@ -11,11 +11,11 @@ import WeatherKit
 @MainActor class WeatherKitManager: ObservableObject {
     @Published var weather:Weather?
     
-    func getWeather(){
+    func getWeather(latitude: Double, longitude: Double){
         async {
             do {
                 weather = try await Task.detached(priority: .userInitiated){
-                    return try await WeatherService.shared.weather(for:.init(latitude: 37.322998, longitude: -122.032181)) // for Apple park
+                    return try await WeatherService.shared.weather(for:.init(latitude: latitude, longitude: longitude))
                 }.value
             } catch {
                 fatalError("\(error)")

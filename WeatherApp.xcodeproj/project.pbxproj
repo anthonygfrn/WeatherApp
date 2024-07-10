@@ -15,6 +15,7 @@
 		A207C24A2C3E859B00F0B9A1 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C2492C3E859B00F0B9A1 /* WeatherAppUITests.swift */; };
 		A207C24C2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C24B2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift */; };
 		A207C25C2C3E860C00F0B9A1 /* WeatherKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */; };
+		A207C25E2C3E8B3B00F0B9A1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A207C25D2C3E8B3B00F0B9A1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		A207C24B2C3E859B00F0B9A1 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A207C2582C3E85D700F0B9A1 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
 		A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitManager.swift; sourceTree = "<group>"; };
+		A207C25D2C3E8B3B00F0B9A1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A207C25B2C3E860C00F0B9A1 /* WeatherKitManager.swift */,
+				A207C25D2C3E8B3B00F0B9A1 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A207C25E2C3E8B3B00F0B9A1 /* LocationManager.swift in Sources */,
 				A207C2312C3E859900F0B9A1 /* ContentView.swift in Sources */,
 				A207C22F2C3E859900F0B9A1 /* WeatherAppApp.swift in Sources */,
 				A207C25C2C3E860C00F0B9A1 /* WeatherKitManager.swift in Sources */,
@@ -449,6 +453,7 @@
 				DEVELOPMENT_TEAM = FTP77G36XW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get the weather for your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -481,6 +486,7 @@
 				DEVELOPMENT_TEAM = FTP77G36XW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get the weather for your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -10,13 +10,25 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var weatherKitManager = WeatherKitManager()
     
+    @StateObject var locationManager = LocationManager()
+    
     var body: some View {
-        HStack {
-            Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
-        }
-        .padding()
-        .task {
-            await weatherKitManager.getWeather()
+        
+        if locationManager.authorisationStatus == .authorizedWhenInUse {
+            
+            // create your view
+            VStack{
+                Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
+                
+                Text(locationManager)
+            }
+                .task {
+                    await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
+                }
+        } else {
+            
+            // Create your alternate view
+            Text("Error loading location")
         }
     }
 }
