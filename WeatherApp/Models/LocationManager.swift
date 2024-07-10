@@ -12,6 +12,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate{
     
     var locationManager = CLLocationManager()
     @Published var authorisationStatus: CLAuthorizationStatus?
+    @Published var cityName: String = "Unknown Location"
     
     var latitude: Double{
         locationManager.location?.coordinate.latitude ?? 37.32298
@@ -23,6 +24,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate{
     override init(){
         super.init()
         locationManager.delegate = self
+        fetchCityName()
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -52,8 +54,21 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate{
         }
     }
     
+    func fetchCityName() {
+            guard let location = locationManager.location else { return }
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in
+                guard let self = self else { return }
+                if let placemark = placemarks?.first, let city = placemark.locality {
+                    DispatchQueue.main.async {
+                        self.cityName = city
+                    }
+                }
+            }
+        }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        fetchCityName()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
