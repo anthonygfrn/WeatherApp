@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ContentView: View {
     @ObservedObject var weatherKitManager = WeatherKitManager()
     @StateObject var locationManager = LocationManager()
@@ -17,24 +15,33 @@ struct ContentView: View {
     var body: some View {
         if locationManager.authorisationStatus == .authorizedWhenInUse {
             // create your view
-            VStack {
-                Text("You're in \(locationManager.cityName)")
-                    .font(.largeTitle)
-                    .padding(.bottom, 10)
+            VStack(alignment: .leading) {
+                Text("You're in \(locationManager.cityName).")
+                    .font(.headline)
                 
-                Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
+                Text("Longitude: \(locationManager.longitude) | Latitude: \(locationManager.latitude) ")
+                    .font(.headline)
+                    .padding(.bottom)
+                
+                Text("\(weatherKitManager.temp)°")
+                    .font(.largeTitle)
+                
+                Text("Humidity: \(weatherKitManager.humidity)")
+                    .font(.headline)
             }
+            .padding()
             .task {
                 await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
             }
             .onReceive(timer) { _ in
                 Task {
-                    await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
-                }
+                await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
+            }
             }
         } else {
             // Create your alternate view
             Text("Error loading location")
+                .padding()
         }
     }
 }

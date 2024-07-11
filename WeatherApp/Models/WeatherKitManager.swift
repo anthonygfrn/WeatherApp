@@ -28,8 +28,18 @@ import WeatherKit
     }
     
     var temp: String {
-        let temp = weather?.currentWeather.temperature
-        let convertedTemp = temp?.converted(to: .celsius).description
-        return convertedTemp ?? "Connecting to Apple Weather Servers"
+            guard let temp = weather?.currentWeather.temperature else {
+                return "Connecting to Apple Weather Servers"
+            }
+            let convertedTemp = Int(temp.converted(to: .celsius).value)
+            return "\(convertedTemp)"
+    }
+    
+    var humidity: String {
+            guard let humidity = weather?.currentWeather.humidity else {
+                return "N/A"
+            }
+            let convertedHumidity = Int(humidity * 100)
+            return "\(convertedHumidity)%"
     }
 }
