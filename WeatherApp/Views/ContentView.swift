@@ -8,40 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var weatherKitManager = WeatherKitManager()
-    @StateObject var locationManager = LocationManager()
+    @StateObject var weatherViewModel = WeatherViewModel()
+    @StateObject var locationViewModel = LocationViewModel()
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Update every 60 seconds
     
     var body: some View {
-        if locationManager.authorisationStatus == .authorizedWhenInUse {
-            // create your view
-            VStack(alignment: .leading) {
-                Text("You're in \(locationManager.cityName).")
+        VStack(alignment: .leading) {
+            if let authorizationStatus = locationViewModel.authorizationStatus, authorizationStatus == .authorizedWhenInUse {
+                Text("You're in \(locationViewModel.cityName).")
                     .font(.headline)
                 
-                Text("Longitude: \(locationManager.longitude) | Latitude: \(locationManager.latitude) ")
+                Text("Longitude: \(locationViewModel.longitude) | Latitude: \(locationViewModel.latitude)")
                     .font(.headline)
                     .padding(.bottom)
                 
-                Text("\(weatherKitManager.temp)°")
+                Text(weatherViewModel.temperature)
                     .font(.largeTitle)
                 
-                Text("Humidity: \(weatherKitManager.humidity)")
+                Text("Humidity: \(weatherViewModel.humidity)")
                     .font(.headline)
+            } else {
+                Text("Error loading location")
+                    .padding()
             }
-            .padding()
-            .task {
-                await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
+        }
+        .padding()
+        .task {
+            await weatherViewModel.fetchWeather(latitude: locationViewModel.latitude, longitude: locationViewModel.longitude)
+        }
+        .onReceive(timer) { _ in
+            Task {
+                await weatherViewModel.fetchWeather(latitude: locationViewModel.latitude, longitude: locationViewModel.longitude)
             }
-            .onReceive(timer) { _ in
-                Task {
-                await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
-            }
-            }
-        } else {
-            // Create your alternate view
-            Text("Error loading location")
-                .padding()
         }
     }
 }
